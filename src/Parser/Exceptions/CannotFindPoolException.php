@@ -1,5 +1,5 @@
 <?php
-namespace Xetaio\Mentions\Parser\Exceptions;
+namespace CrixuAMG\Mentions\Parser\Exceptions;
 
 use Exception;
 

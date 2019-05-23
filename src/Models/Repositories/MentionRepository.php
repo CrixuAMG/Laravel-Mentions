@@ -1,8 +1,8 @@
 <?php
-namespace Xetaio\Mentions\Models\Repositories;
+namespace CrixuAMG\Mentions\Models\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
-use Xetaio\Mentions\Models\Mention;
+use CrixuAMG\Mentions\Models\Mention;
 
 class MentionRepository
 {
@@ -22,7 +22,7 @@ class MentionRepository
     /**
      * Creates a new mention.
      *
-     * @return \Xetaio\Mentions\Models\Mention
+     * @return \CrixuAMG\Mentions\Models\Mention
      */
     public static function create(Model $model, Model $recipient, $notify = true): Mention
     {

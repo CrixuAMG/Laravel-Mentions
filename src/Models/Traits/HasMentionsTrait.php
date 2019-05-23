@@ -1,17 +1,17 @@
 <?php
-namespace Xetaio\Mentions\Models\Traits;
+namespace CrixuAMG\Mentions\Models\Traits;
 
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Xetaio\Mentions\Models\Repositories\MentionRepository;
-use Xetaio\Mentions\Models\Mention;
+use CrixuAMG\Mentions\Models\Repositories\MentionRepository;
+use CrixuAMG\Mentions\Models\Mention;
 
 trait HasMentionsTrait
 {
     /**
      * Create a new mention for the given model(s).
      *
-     * @return bool|\Xetaio\Mentions\Models\Mention
+     * @return bool|\CrixuAMG\Mentions\Models\Mention
      */
     public function mention(Model $model, bool $notify = true): Mention
     {

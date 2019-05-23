@@ -1,5 +1,5 @@
 {
-    "name": "xetaio/xetaravel-mentions",
+    "name": "crixuamg/laravecl-mentions",
     "description": "A package to parse a @mention from a text and mention the user with a notification.",
     "keywords": [
         "laravel",
@@ -8,18 +8,18 @@
         "users",
         "notifications"
     ],
-    "homepage": "https://github.com/XetaIO/Xetaravel-Mentions",
+    "homepage": "https://github.com/CrixuAMG/Laravel-Mentions",
     "support": {
-        "source": "https://github.com/XetaIO/Xetaravel-Mentions",
-        "issues": "https://github.com/XetaIO/Xetaravel-Mentions/issues"
+        "source": "https://github.com/CrixuAMG/Laravel-Mentions",
+        "issues": "https://github.com/CrixuAMG/Laravel-Mentions/issues"
     },
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Xety",
-            "email": "emeric@xeta.io",
-            "homepage": "https://github.com/Xety"
+            "name": "Christian Kaal",
+            "email": "christiankaal.dev@gmail.com",
+            "homepage": "https://github.com/CrixuAMG"
         }
     ],
     "require": {
@@ -35,7 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Xetaio\\Mentions\\": "src/"
+            "CrixuAMG\\Mentions\\": "src/"
         }
     },
     "autoload-dev": {
@@ -46,7 +46,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Xetaio\\Mentions\\Providers\\MentionServiceProvider"
+                "CrixuAMG\\Mentions\\Providers\\MentionServiceProvider"
             ]
         }
     },

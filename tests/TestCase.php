@@ -3,7 +3,7 @@ namespace Tests;
 
 use Orchestra\Database\ConsoleServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Xetaio\Mentions\Providers\MentionServiceProvider;
+use CrixuAMG\Mentions\Providers\MentionServiceProvider;
 
 abstract class TestCase extends Orchestra
 {

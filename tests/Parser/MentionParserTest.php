@@ -5,12 +5,12 @@ use Tests\TestCase;
 use Tests\vendor\Models\Article;
 use Tests\vendor\Models\User;
 use Tests\vendor\Parser\CustomParser;
-use Xetaio\Mentions\Parser\MentionParser;
+use CrixuAMG\Mentions\Parser\MentionParser;
 
 class MentionParserTest extends TestCase
 {
     /**
-     * @var \Xetaio\Mentions\Parser\MentionParser
+     * @var \CrixuAMG\Mentions\Parser\MentionParser
      */
     protected $parser;
 

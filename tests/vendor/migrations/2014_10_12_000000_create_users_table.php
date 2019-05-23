@@ -28,14 +28,14 @@ class CreateUsersTable extends Migration
         $users = [
             [
                 'username'   => 'Admin',
-                'email'      => 'admin@xetaravel.com',
+                'email'      => 'admin@Laravel.com',
                 'password'   => bcrypt('secret'),
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
             [
                 'username'   => 'Member',
-                'email'      => 'member@xetaravel.com',
+                'email'      => 'member@Laravel.com',
                 'password'   => bcrypt('secret'),
                 'created_at' => $now,
                 'updated_at' => $now,

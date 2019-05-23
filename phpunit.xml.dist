@@ -11,7 +11,7 @@
          verbose="true"
         >
     <testsuites>
-        <testsuite name="Xetaravel Mentions Test Suite">
+        <testsuite name="Laravel Mentions Test Suite">
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>

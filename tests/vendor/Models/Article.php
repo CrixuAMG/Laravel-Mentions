@@ -2,7 +2,7 @@
 namespace Tests\vendor\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Xetaio\Mentions\Models\Traits\HasMentionsTrait;
+use CrixuAMG\Mentions\Models\Traits\HasMentionsTrait;
 
 class Article extends Model
 {

@@ -1,8 +1,8 @@
-> <h1 align="center">Xetaravel Mentions</h1>
+> <h1 align="center">Laravel Mentions</h1>
 >
 > |Travis|Coverage|Stable Version|Downloads|Laravel|License|
 > |:-------:|:------:|:-------:|:------:|:-------:|:-------:|
-> |[![Build Status](https://img.shields.io/travis/XetaIO/Xetaravel-Mentions.svg?style=flat-square)](https://travis-ci.org/XetaIO/Xetaravel-Mentions)|[![Coverage Status](https://img.shields.io/coveralls/XetaIO/Xetaravel-Mentions/master.svg?style=flat-square)](https://coveralls.io/r/XetaIO/Xetaravel-Mentions)|[![Latest Stable Version](https://img.shields.io/packagist/v/XetaIO/Xetaravel-Mentions.svg?style=flat-square)](https://packagist.org/packages/xetaio/xetaravel-mentions)|[![Total Downloads](https://img.shields.io/packagist/dt/xetaio/xetaravel-mentions.svg?style=flat-square)](https://packagist.org/packages/xetaio/xetaravel-mentions)|[![Laravel 5.6](https://img.shields.io/badge/Laravel->=5.6-f4645f.svg?style=flat-square)](http://laravel.com)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/XetaIO/Xetaravel-Mentions/blob/master/LICENSE)|
+> |[![Build Status](https://img.shields.io/travis/CrixuAMG/Laravel-Mentions.svg?style=flat-square)](https://travis-ci.org/CrixuAMG/Laravel-Mentions)|[![Coverage Status](https://img.shields.io/coveralls/CrixuAMG/Laravel-Mentions/master.svg?style=flat-square)](https://coveralls.io/r/CrixuAMG/Laravel-Mentions)|[![Latest Stable Version](https://img.shields.io/packagist/v/CrixuAMG/Laravel-Mentions.svg?style=flat-square)](https://packagist.org/packages/CrixuAMG/Laravel-mentions)|[![Total Downloads](https://img.shields.io/packagist/dt/CrixuAMG/Laravel-mentions.svg?style=flat-square)](https://packagist.org/packages/CrixuAMG/Laravel-mentions)|[![Laravel 5.6](https://img.shields.io/badge/Laravel->=5.6-f4645f.svg?style=flat-square)](http://laravel.com)|[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/CrixuAMG/Laravel-Mentions/blob/master/LICENSE)|
 >
 > A package to parse `@mentions` from a text and mention the user with a notification.
 >
@@ -40,7 +40,7 @@
 > ## Installation
 >
 > ```
-> composer require xetaio/xetaravel-mentions
+> composer require CrixuAMG/Laravel-mentions
 > ```
 >
 > #### ServiceProviders
@@ -48,7 +48,7 @@
 > ```php
 > 'providers' => [
 >   //...
->   Xetaio\Mentions\Providers\MentionServiceProvider::class,
+>   CrixuAMG\Mentions\Providers\MentionServiceProvider::class,
 >   //...
 > ]
 > ```
@@ -56,7 +56,7 @@
 > #### Vendor Publish
 > Publish the vendor files to your application (included the config file `config/mentions.php` and the migration file) :
 > ```php
-> php artisan vendor:publish --provider="Xetaio\Mentions\Providers\MentionServiceProvider"
+> php artisan vendor:publish --provider="CrixuAMG\Mentions\Providers\MentionServiceProvider"
 > ```
 > Then migrate the database :
 > ```sh
@@ -95,7 +95,7 @@
 > namespace App\Models;
 >
 > use Illuminate\Database\Eloquent\Model;
-> use Xetaio\Mentions\Models\Traits\HasMentionsTrait;
+> use CrixuAMG\Mentions\Models\Traits\HasMentionsTrait;
 >
 > class Comment extends Model
 > {
@@ -107,7 +107,7 @@
 > <?php
 > namespace App\Http\Controllers;
 >
-> use Xetaio\Mentions\Parser\MentionParser;
+> use CrixuAMG\Mentions\Parser\MentionParser;
 >
 > class CommentController extends Controller
 > {
@@ -221,7 +221,7 @@
 > namespace App\Parser;
 >
 > use Illuminate\Support\Str;
-> use Xetaio\Mentions\Parser\MentionParser;
+> use CrixuAMG\Mentions\Parser\MentionParser;
 >
 > class CustomParser extends MentionParser
 > {
@@ -319,4 +319,4 @@
 > ```
 >
 > ## Contribute
-> If you want to contribute, please [follow this guide](https://github.com/XetaIO/Xetaravel-Mentions/blob/master/.github/CONTRIBUTING.md).
+> If you want to contribute, please [follow this guide](https://github.com/CrixuAMG/Laravel-Mentions/blob/master/.github/CONTRIBUTING.md).

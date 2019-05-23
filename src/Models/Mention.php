@@ -1,9 +1,9 @@
 <?php
-namespace Xetaio\Mentions\Models;
+namespace CrixuAMG\Mentions\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Xetaio\Mentions\Parser\Exceptions\CannotFindPoolException;
+use CrixuAMG\Mentions\Parser\Exceptions\CannotFindPoolException;
 
 class Mention extends Model
 {
@@ -41,7 +41,7 @@ class Mention extends Model
      *
      * @param \Illuminate\Database\Eloquent\Model $model
      *
-     * @return \Xetaio\Mentions\Models\Mention
+     * @return \CrixuAMG\Mentions\Models\Mention
      */
     public function notify(Model $model, Model $recipient): Mention
     {

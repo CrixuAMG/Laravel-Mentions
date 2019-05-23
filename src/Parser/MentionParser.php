@@ -1,5 +1,6 @@
 <?php
-namespace Xetaio\Mentions\Parser;
+
+namespace CrixuAMG\Mentions\Parser;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -21,23 +22,24 @@ class MentionParser extends Configurator
      * @var array
      */
     protected $defaultConfig = [
-        'pool' => 'users',
-        'mention' => true,
-        'notify' => true,
-        'character' => '@',
-        'regex' => '/\s({character}{pattern}{rules})/',
+        'pool'              => 'users',
+        'mention'           => true,
+        'mention_self'      => true,
+        'notify'            => true,
+        'character'         => '@',
+        'regex'             => '/\s({character}{pattern}{rules})/',
         'regex_replacement' => [
             '{character}' => '@',
-            '{pattern}' => '[A-Za-z0-9]',
-            '{rules}' => '{4,20}'
-        ]
+            '{pattern}'   => '[A-Za-z0-9]',
+            '{rules}'     => '{4,20}',
+        ],
     ];
 
     /**
      * Constructor.
      *
-     * @param \Illuminate\Database\Eloquent\Model $model The model used to mention the user.
-     * @param array $config The config to merge with the default config.
+     * @param \Illuminate\Database\Eloquent\Model $model  The model used to mention the user.
+     * @param array                               $config The config to merge with the default config.
      */
     public function __construct(Model $model, array $config = [])
     {
@@ -61,7 +63,7 @@ class MentionParser extends Configurator
             return $input;
         }
         $character = $this->getOption('character');
-        $regex = strtr($this->getOption('regex'), $this->getOption('regex_replacement'));
+        $regex     = strtr($this->getOption('regex'), $this->getOption('regex_replacement'));
 
         preg_match_all($regex, $input, $matches);
 
@@ -76,22 +78,17 @@ class MentionParser extends Configurator
     }
 
     /**
-     * Replace the mention with a markdown link.
+     * Remove all `null` key in the given array.
      *
-     * @param array $match The mention to replace.
+     * @param array $array The array where the filter should be applied.
      *
-     * @return string
+     * @return array
      */
-    protected function replace(array $match): string
+    protected function removeNullKeys(array $array): array
     {
-        $character = $this->getOption('character');
-        $mention = Str::title(str_replace($character, '', trim($match[0])));
-
-        $route = config('mentions.pools.' . $this->getOption('pool') . '.route');
-
-        $link = $route . $mention;
-
-        return " [{$character}{$mention}]($link)";
+        return array_filter($array, function ($key) {
+            return ($key !== null);
+        });
     }
 
     /**
@@ -115,17 +112,22 @@ class MentionParser extends Configurator
     }
 
     /**
-     * Remove all `null` key in the given array.
+     * Replace the mention with a markdown link.
      *
-     * @param array $array The array where the filter should be applied.
+     * @param array $match The mention to replace.
      *
-     * @return array
+     * @return string
      */
-    protected function removeNullKeys(array $array): array
+    protected function replace(array $match): string
     {
-        return array_filter($array, function ($key) {
-            return ($key !== null);
-        });
+        $character = $this->getOption('character');
+        $mention   = Str::title(str_replace($character, '', trim($match[0])));
+
+        $route = config('mentions.pools.' . $this->getOption('pool') . '.route');
+
+        $link = $route . $mention;
+
+        return " [{$character}{$mention}]($link)";
     }
 
     /**
@@ -139,7 +141,7 @@ class MentionParser extends Configurator
     protected function mapper(string $key)
     {
         $character = $this->getOption('character');
-        $config = config('mentions.pools.' . $this->getOption('pool'));
+        $config    = config('mentions.pools.' . $this->getOption('pool'));
 
         $mention = str_replace($character, '', trim($key));
 
@@ -149,7 +151,10 @@ class MentionParser extends Configurator
             return null;
         }
 
-        if ($this->getOption('mention') == true && $mentionned->getKey() !== Auth::id()) {
+        if (
+            $this->getOption('mention') == true &&
+            ($mentionned->getKey() !== Auth::id() || $this->getOption('mention_self') == true)
+        ) {
             $this->model->mention($mentionned, $this->getOption('notify'));
         }
 

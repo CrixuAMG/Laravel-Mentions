@@ -2,7 +2,7 @@
 namespace Tests\vendor\Parser;
 
 use Illuminate\Support\Str;
-use Xetaio\Mentions\Parser\MentionParser;
+use CrixuAMG\Mentions\Parser\MentionParser;
 
 class CustomParser extends MentionParser
 {

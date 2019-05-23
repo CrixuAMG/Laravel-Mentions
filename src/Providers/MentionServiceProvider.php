@@ -1,5 +1,5 @@
 <?php
-namespace Xetaio\Mentions\Providers;
+namespace CrixuAMG\Mentions\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
