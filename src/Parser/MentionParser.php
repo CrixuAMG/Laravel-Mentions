@@ -62,8 +62,22 @@ class MentionParser extends Configurator
         if (is_null($input) || empty($input)) {
             return $input;
         }
-        $character = $this->getOption('character');
-        $regex     = strtr($this->getOption('regex'), $this->getOption('regex_replacement'));
+
+        $matches = $this->getMatchesFromInput($input);
+
+        $output = preg_replace_callback($matches, [$this, 'replace'], $input);
+
+        return $output;
+    }
+
+    /**
+     * @param $input
+     *
+     * @return array
+     */
+    public function getMatchesFromInput($input): array
+    {
+        $regex = strtr($this->getOption('regex'), $this->getOption('regex_replacement'));
 
         preg_match_all($regex, $input, $matches);
 
@@ -72,9 +86,7 @@ class MentionParser extends Configurator
         $matches = $this->removeNullKeys($matches);
         $matches = $this->prepareArray($matches);
 
-        $output = preg_replace_callback($matches, [$this, 'replace'], $input);
-
-        return $output;
+        return $matches;
     }
 
     /**
