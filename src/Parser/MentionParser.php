@@ -63,20 +63,6 @@ class MentionParser extends Configurator
             return $input;
         }
 
-        $matches = $this->getMatchesFromInput($input);
-
-        $output = preg_replace_callback($matches, [$this, 'replace'], $input);
-
-        return $output;
-    }
-
-    /**
-     * @param $input
-     *
-     * @return array
-     */
-    public function getMatchesFromInput($input): array
-    {
         $regex = strtr($this->getOption('regex'), $this->getOption('regex_replacement'));
 
         preg_match_all($regex, $input, $matches);
@@ -86,7 +72,9 @@ class MentionParser extends Configurator
         $matches = $this->removeNullKeys($matches);
         $matches = $this->prepareArray($matches);
 
-        return $matches;
+        $output = preg_replace_callback($matches, [$this, 'replace'], $input);
+
+        return $output;
     }
 
     /**
@@ -124,6 +112,20 @@ class MentionParser extends Configurator
     }
 
     /**
+     * @param $input
+     *
+     * @return array
+     */
+    public function getMatchesFromInput($input): array
+    {
+        $regex = strtr($this->getOption('regex'), $this->getOption('regex_replacement'));
+
+        preg_match_all($regex, $input, $matches);
+
+        return array_map([$this, 'mapper'], $matches[0], true);
+    }
+
+    /**
      * Replace the mention with a markdown link.
      *
      * @param array $match The mention to replace.
@@ -147,10 +149,11 @@ class MentionParser extends Configurator
      * this mention from the out array, just return `null`.
      *
      * @param string $key The mention that has been matched.
+     * @param bool   $returnModel
      *
      * @return null|string
      */
-    protected function mapper(string $key)
+    protected function mapper(string $key, bool $returnModel = false)
     {
         $character = $this->getOption('character');
         $config    = config('mentions.pools.' . $this->getOption('pool'));
@@ -161,6 +164,10 @@ class MentionParser extends Configurator
 
         if ($mentionned == false) {
             return null;
+        }
+
+        if ($returnModel) {
+            return $returnModel;
         }
 
         if (
