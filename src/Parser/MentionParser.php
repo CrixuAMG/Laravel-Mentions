@@ -120,9 +120,19 @@ class MentionParser extends Configurator
     {
         $regex = strtr($this->getOption('regex'), $this->getOption('regex_replacement'));
 
+        $matches = [];
         preg_match_all($regex, $input, $matches);
 
-        return array_map([$this, 'mapper'], $matches[0], true);
+        $return = [];
+        foreach ($matches[0] as $match) {
+            $data = $this->mapper($match, true);
+
+            if ($data) {
+                $return[] = $data;
+            }
+        }
+
+        return $return;
     }
 
     /**
@@ -167,7 +177,7 @@ class MentionParser extends Configurator
         }
 
         if ($returnModel) {
-            return $returnModel;
+            return $mentionned;
         }
 
         if (
